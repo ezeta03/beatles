@@ -1,0 +1,104 @@
+// app.scss
+
+$app-bg: #f5f5f5;
+$primary-color: #1a1a1a;
+$secondary-color: #555;
+$highlight: #ffcc00;
+$font-stack: 'Segoe UI', sans-serif;
+
+body {
+  margin: 0;
+  font-family: $font-stack;
+  background-color: $app-bg;
+  color: $primary-color;
+}
+
+.app-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+.main-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.song-list {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+
+  li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.song-details {
+  flex: 2;
+
+  .song-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .fullscreen-btn {
+      padding: 0.5rem 1rem;
+      background-color: $highlight;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .lyrics {
+    white-space: pre-wrap;
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+  }
+
+  .chords {
+    .chord-images {
+      display: flex;
+      gap: 1rem;
+
+      .chord {
+        text-align: center;
+
+        img {
+          width: 60px;
+          height: auto;
+        }
+
+        p {
+          margin: 0.5rem 0 0;
+        }
+      }
+    }
+  }
+}
