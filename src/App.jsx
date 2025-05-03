@@ -1,46 +1,104 @@
-import React, { useState } from "react";
-import './assets/sass/App.module.scss'; // Si estás usando SCSS, asegúrate de importar los estilos
-
-// Lista de canciones (simulada, en producción esta data vendría de un archivo JSON)
-const songs = [
-  { "order": 1, "title": "Day Tripper" },
-  { "order": 2, "title": "Hello Goodbye" },
-  { "order": 3, "title": "Eight Days a Week" },
-  { "order": 4, "title": "We Can Work It Out" },
-];
+import React, { useState, useEffect } from 'react';
+import SongList from './components/SongList';
+import SongDetails from './components/SongDetails';
+import Filters from './components/Filters';
+import songsData from './data/songs.json';
+import styles from './assets/sass/App.module.scss'
 
 function App() {
-  const [lyrics, setLyrics] = useState(""); // Guardar la letra de la canción seleccionada
+  const [songs, setSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState([]);
+  const [selectedSong, setSelectedSong] = useState(null);
+  const [blockFilter, setBlockFilter] = useState('Todos');
+  const [composerFilter, setComposerFilter] = useState('Todos');
+  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchLyrics = async (songTitle) => {
-    const songFileName = songTitle.toLowerCase().replace(/\s+/g, "_"); // Convertir el nombre de la canción a formato adecuado
-    try {
-      const response = await fetch(`/data/${songFileName}.txt`); // Buscar el archivo de texto en public/data/
-      if (response.ok) {
-        const text = await response.text();
-        setLyrics(text); // Almacenar la letra en el estado
-      } else {
-        setLyrics("No se pudo cargar la letra de la canción.");
-      }
-    } catch (error) {
-      setLyrics("Hubo un error al cargar la letra.");
+  useEffect(() => {
+    // Cargar canciones y simular tiempo de carga
+    setTimeout(() => {
+      setSongs(songsData);
+      setFilteredSongs(songsData);
+      setIsLoading(false);
+    }, 500);
+  }, []);
+
+  useEffect(() => {
+    // Aplicar filtros cuando cambien
+    let result = [...songs];
+    
+    if (blockFilter !== 'Todos') {
+      result = result.filter(song => song.block === blockFilter);
+    }
+    
+    if (composerFilter !== 'Todos') {
+      result = result.filter(song => song.composer === composerFilter);
+    }
+    
+    setFilteredSongs(result);
+  }, [blockFilter, composerFilter, songs]);
+
+  // Extraer bloques únicos para el filtro
+  const blocks = ['Todos', ...new Set(songs.map(song => song.block))];
+  
+  // Extraer compositores únicos para el filtro
+  const composers = ['Todos', ...new Set(songs.map(song => song.composer))];
+
+  const handleSelectSong = (song) => {
+    setSelectedSong(song);
+    
+    // En dispositivos móviles, desplazar hacia los detalles
+    if (window.innerWidth <= 768) {
+      document.querySelector('.right-panel')?.scrollIntoView({ 
+        behavior: 'smooth' 
+      });
     }
   };
 
-  return (
-    <div className="App">
-      <h1>Lista de Canciones de The Beatles</h1>
-      <ul>
-        {songs.map((song) => (
-          <li key={song.order} onClick={() => fetchLyrics(song.title)}>
-            {song.title}
-          </li>
-        ))}
-      </ul>
+  if (isLoading) {
+    return (
+      <div className={styles.loading}>
+        <div className={styles.loader}>
+          <svg width="50" height="50" viewBox="0 0 50 50">
+            <path d="M25,5 A20,20 0 0,1 45,25" stroke="#1d75de" strokeWidth="5" fill="none" strokeLinecap="round">
+              <animateTransform 
+                attributeName="transform" 
+                type="rotate"
+                from="0 25 25"
+                to="360 25 25"
+                dur="1s"
+                repeatCount="indefinite" />
+            </path>
+          </svg>
+          <p>Cargando repertorio...</p>
+        </div>
+      </div>
+    );
+  }
 
-      <div className="lyrics">
-        <h2>Letra de la Canción</h2>
-        <pre>{lyrics}</pre>
+  return (
+    <div className={styles.app}>
+      <h1>Repertorio de The Beatles</h1>
+      
+      <Filters 
+        blocks={blocks}
+        composers={composers}
+        blockFilter={blockFilter}
+        composerFilter={composerFilter}
+        setBlockFilter={setBlockFilter}
+        setComposerFilter={setComposerFilter}
+      />
+      
+      <div className={styles.content}>
+        <div className={styles.leftPanel}>
+          <SongList 
+            songs={filteredSongs} 
+            onSelect={handleSelectSong} 
+            selectedSong={selectedSong}
+          />
+        </div>
+        <div className={styles.rightPanel}>
+          <SongDetails selectedSong={selectedSong} />
+        </div>
       </div>
     </div>
   );

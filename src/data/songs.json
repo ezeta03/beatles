@@ -1,75 +1,75 @@
 [
   {
     "order": 1,
-    "title": "Day_Tripper",
+    "title": "Day Tripper",
     "composer": "Lennon/McCartney",
     "block": "Inicio",
     "lyrics": "Got a good reason. For taking the easy way out. Got a good reason. For taking the easy way out now. She was a day tripper. A one way ticket, yeah. It took me so long to find out. And I found out She's a big teaser She took me half the way there She's a big teaser She took me half the way there, now She was a day tripper One way ticket, yeah It took me so long to find out And I found out Ah, ah, ah, ah, ah, ah Tried to please her She only played one night stands Tried to please her She only played one night stands, now She was a day tripper Sunday driver, yeah It took me so long to find out And I found out Day tripper, yeah Day tripper, yeah Day tripper Day tripper, yeah Day tripper"
   },
   {
     "order": 2,
-    "title": "Hello_Goodbye",
+    "title": "Hello Goodbye",
     "composer": "Lennon/McCartney",
     "block": "Inicio",
     "lyrics": "Got a good reason."
   },
   {
     "order": 3,
-    "title": "Eight_Days_a_Week",
+    "title": "Eight Days a Week",
     "composer": "Lennon/McCartney",
     "block": "Inicio"
   },
   {
     "order": 4,
-    "title": "We_Can_Work_It_Out",
+    "title": "We Can Work It Out",
     "composer": "Lennon/McCartney",
     "block": "Inicio"
   },
   {
     "order": 5,
-    "title": "And_Your_Bird_Can_Sing",
+    "title": "And Your Bird Can Sing",
     "composer": "Lennon/McCartney",
     "block": "Inicio"
   },
   {
     "order": 6,
-    "title": "Got_To_Get_You_Into_My_Life",
+    "title": "Got To Get You Into My Life",
     "composer": "Lennon/McCartney",
     "block": "Inicio"
   },
   {
     "order": 7,
-    "title": "Ticket_To_Ride",
+    "title": "Ticket To Ride",
     "composer": "Lennon/McCartney",
     "block": "Rolas"
   },
   {
     "order": 8,
-    "title": "All_My_Loving",
+    "title": "All My Loving",
     "composer": "Lennon/McCartney",
     "block": "Rolas"
   },
   {
     "order": 9,
-    "title": "Please_Please_Me",
+    "title": "Please Please Me",
     "composer": "Lennon/McCartney",
     "block": "Rolas"
   },
   {
     "order": 10,
-    "title": "You_Can’t_Do_That",
+    "title": "You Can’t Do That",
     "composer": "Lennon/McCartney",
     "block": "Rolas"
   },
   {
     "order": 11,
-    "title": "Can’t_Buy_Me_Love",
+    "title": "Can’t Buy Me Love",
     "composer": "Lennon/McCartney",
     "block": "Rolas"
   },
   {
     "order": 12,
-    "title": "Drive_My_Car",
+    "title": "Drive My Car",
     "composer": "Lennon/McCartney",
     "block": "Rolas"
   },
@@ -81,49 +81,49 @@
   },
   {
     "order": 14,
-    "title": "In_My_Life",
+    "title": "In My Life",
     "composer": "Lennon/McCartney",
     "block": "Teclas"
   },
   {
     "order": 15,
-    "title": "Martha_My_Dear",
+    "title": "Martha My Dear",
     "composer": "Lennon/McCartney",
     "block": "Teclas"
   },
   {
     "order": 16,
-    "title": "Lady_Madonna",
+    "title": "Lady Madonna",
     "composer": "Lennon/McCartney",
     "block": "Teclas"
   },
   {
     "order": 17,
-    "title": "The_Fool_On_The_Hill",
+    "title": "The Fool On The Hill",
     "composer": "Lennon/McCartney",
     "block": "Teclas"
   },
   {
     "order": 18,
-    "title": "Free_As_A_Bird",
+    "title": "Free As A Bird",
     "composer": "Lennon/McCartney",
     "block": "Antología"
   },
   {
     "order": 19,
-    "title": "Real_Love",
+    "title": "Real Love",
     "composer": "Lennon/McCartney",
     "block": "Antología"
   },
   {
     "order": 20,
-    "title": "Now_And_Then",
+    "title": "Now And Then",
     "composer": "Lennon/McCartney",
     "block": "Antología"
   },
   {
     "order": 21,
-    "title": "Here_Comes_The_Sun",
+    "title": "Here Comes The Sun",
     "composer": "George Harrison",
     "block": "George Harrison"
   },
@@ -135,19 +135,19 @@
   },
   {
     "order": 23,
-    "title": "While_My_Guitar_Gently_Weeps",
+    "title": "While My Guitar Gently Weeps",
     "composer": "George Harrison",
     "block": "George Harrison"
   },
   {
     "order": 24,
-    "title": "Till_There_Was_You",
+    "title": "Till There Was You",
     "composer": "Meredith Willson",
     "block": "Segunda parte"
   },
   {
     "order": 25,
-    "title": "Sgt_Pepper's_Lonely_Hearts_Club_Band",
+    "title": "Sgt Pepper's Lonely Hearts Club Band",
     "composer": "Lennon/McCartney",
     "block": "Segunda parte"
   },

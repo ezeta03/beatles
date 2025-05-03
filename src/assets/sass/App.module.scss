@@ -1,140 +1,329 @@
-$app-bg: #1a1a1a;
-$text-color: #fff;
-$accent: #ffce00;
+// Variables
+$primary-color: #1d75de;
+$secondary-color: #f5b72f;
+$text-color: #333;
+$light-text: #666;
+$background-color: #f9f9f9;
+$card-bg: #ffffff;
+$hover-color: rgba($primary-color, 0.08);
+$border-radius: 12px;
+$box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+$transition: all 0.3s ease;
+$beatles-red: #d42c2c;
+$beatles-yellow: #79a316;
+
+// Mixins
+@mixin card {
+  background-color: $card-bg; 
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  transition: $transition;
+}
+
+@mixin button {
+  padding: 10px 20px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+@mixin gradient-text {
+  background: linear-gradient(45deg, $beatles-red, $beatles-yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+// Base styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: $app-bg;
+  font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  background-color: $background-color;
   color: $text-color;
+  line-height: 1.6;
 }
 
-.app-container {
-  padding: 2rem;
+// Loading animation
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  .loader {
+    text-align: center;
+
+    p {
+      margin-top: 15px;
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+// App container
+.app {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
+// Header
 h1 {
-  font-size: 2.5rem;
+  @include gradient-text;
   text-align: center;
-  margin-bottom: 2rem;
-  color: $accent;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, $beatles-red, $beatles-yellow);
+    margin: 15px auto 0;
+    border-radius: 2px;
+  }
 }
 
+// Filters
 .filters {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
   justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
 
   select {
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: none;
-    font-size: 1rem;
-    background-color: #333;
-    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid #eaeaea;
+    background-color: white;
+    font-size: 16px;
+    min-width: 220px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231d75de' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    transition: $transition;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+    }
   }
 }
 
-.main-content {
+// Content layout - This is the two-column layout
+.content {
   display: flex;
-  gap: 2rem;
+  gap: 40px;
+  min-height: 600px;
+}
 
-  @media (max-width: 768px) {
-    flex-direction: column;
+// Left panel - Song list
+.leftPanel {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+// Right panel - Song details
+.rightPanel {
+  flex: 2;
+  @include card;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, $beatles-red, $beatles-yellow);
   }
 }
 
-.song-list {
+// Song list
+.songList {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 30%;
+  @include card;
+  overflow: hidden;
 
   li {
-    padding: 0.75rem;
-    background-color: #2a2a2a;
-    margin-bottom: 0.5rem;
-    border-radius: 5px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: $transition;
+    position: relative;
 
     &:hover {
-      background-color: #444;
+      background-color: $hover-color;
+      padding-left: 25px;
     }
-  }
 
-  @media (max-width: 768px) {
-    width: 100%;
+    &:active {
+      background-color: rgba($primary-color, 0.15);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.selected {
+      background-color: rgba($primary-color, 0.12);
+      padding-left: 25px;
+      font-weight: 600;
+      color: $primary-color;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: $primary-color;
+      }
+    }
   }
 }
 
-.song-details {
-  flex-grow: 1;
-  background-color: #2a2a2a;
-  padding: 1rem;
-  border-radius: 8px;
+.songListEmpty {
+  @include card;
+  padding: 40px 20px;
+  text-align: center;
+  color: $light-text;
+  font-style: italic;
+}
 
-  .song-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+// Song details
+.songDetails {
+  min-height: 400px;
 
-    h2 {
-      margin: 0;
-      color: $accent;
-    }
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: $text-color;
+    font-weight: 700;
+  }
 
-    .fullscreen-btn {
-      background-color: $accent;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
+  h4 {
+    margin-bottom: 20px;
+    color: $light-text;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
 
-      &:hover {
-        background-color: black($accent, 10%);
-      }
-    }
+  p {
+    margin-bottom: 10px;
+    line-height: 1.7;
   }
 
   .lyrics {
-    font-family: monospace;
-    white-space: pre-wrap;
-    background: #f9f9f9;
-    padding: 1rem;
-    border-radius: 10px;
+    margin-top: 30px;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    color: $text-color;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border-left: 3px solid $primary-color;
+
+    p {
+      margin-bottom: 15px;
+    }
   }
 
-  .chords {
-    margin-top: 1.5rem;
+  strong {
+    color: $primary-color;
+    font-weight: 600;
+  }
 
-    h4 {
-      margin-bottom: 0.5rem;
-      color: $accent;
-    }
+  // Empty state
+  &:empty::before {
+    content: "Selecciona una canción para ver sus detalles";
+    color: $light-text;
+    font-style: italic;
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+  }
+}
 
-    .chord-images {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+// Responsive design - Adjust to single column on mobile
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
 
-      .chord {
-        text-align: center;
+  .leftPanel,
+  .rightPanel {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
 
-        img {
-          max-width: 80px;
-          display: block;
-          margin: 0 auto 0.5rem;
-        }
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
 
-        p {
-          margin: 0;
-        }
-      }
-    }
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.songList li,
+.songDetails {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+// Beatles-inspired styling
+.songList li {
+  &:nth-child(4n + 1) {
+    border-left: 3px solid $beatles-red;
+  }
+  &:nth-child(4n + 2) {
+    border-left: 3px solid $beatles-yellow;
+  }
+  &:nth-child(4n + 3) {
+    border-left: 3px solid $primary-color;
+  }
+  &:nth-child(4n + 4) {
+    border-left: 3px solid $beatles-yellow;
   }
 }
